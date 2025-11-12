@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentin Bertho - Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00d4ff;
+            --secondary: #ff6b9d;
+            --accent: #c471ed;
+            --dark: #0a0e27;
+            --darker: #050816;
+            --light: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        nav a:hover {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--primary);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5em, 8vw, 6em);
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(30deg); }
+        }
+
+        .hero-content .tagline {
+            font-size: clamp(1.2em, 3vw, 2em);
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+		
+		.exp-missions {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .exp-missions li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .exp-missions li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 1.2em;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(2em, 5vw, 3.5em);
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.5s;
+            z-index: -1;
+        }
+
+        .project-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+        }
+
+        .project-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-title {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        .project-desc {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tag {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            color: var(--primary);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        .timeline-date {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .timeline-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+
+        .timeline-company {
+            color: var(--secondary);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .skill-card:hover::before {
+            left: 100%;
+        }
+
+        .skill-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+
+        .skill-level {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9em;
+        }
+
+        .contact-section {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: rgba(0, 212, 255, 0.1);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .contact-btn:hover {
+            background: var(--primary);
+            color: var(--darker);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translate(-50%, 0); }
+            50% { transform: translate(-50%, 10px); }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                top: auto;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+                max-width: 300px;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: flex-start;
+                padding-left: 50px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+
+    <nav>
+        <a href="#home">Accueil</a>
+        <a href="#projects">Projets</a>
+        <a href="#experience">Expérience</a>
+        <a href="#skills">Compétences</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="container">
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Valentin Bertho</h1>
+                <p class="tagline">Développeur Full Stack • Architecte Solutions</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Années d'XP</div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <i class="fas fa-chevron-down" style="color: var(--primary); font-size: 2em;"></i>
+            </div>
+        </section>
+
+        <section class="section" id="projects">
+            <h2 class="section-title">Side Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3 class="project-title">LogHelper</h3>
+                    <p class="project-desc">
+Portail de gestion des logs permettant aux techniciens support de consulter simplement les logs d'applications Spring Boot. L'outil filtre les informations verbeux et génère des rapports PDF exportables à destination des développeurs, facilitant grandement le diagnostic et la résolution d'incidents.                     </p>
+                    <div class="project-tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">Spring Boot</span>
+                        <span class="tag">Thymeleaf</span>
+                        <span class="tag">PDF Generation</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="project-title">Ath Audit</h3>
+                    <p class="project-desc">
+Outil d'audit de bases de données en prévision de la mise en conformité pour la facturation électronique obligatoire. Détecte les anomalies : sociétés sans SIRET, SIRET invalides, données erronées. Génère des rapports détaillés pour corriger les données et assurer la conformité réglementaire.                     </p>
+                    <div class="project-tags">
+                        <span class="tag">Java</span>
+                        <span class="tag">Spring Boot</span>
+                        <span class="tag">Thymeleaf</span>
+                        <span class="tag">Audit & Conformité</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-icon">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3 class="project-title">TrainMate</h3>
+                    <p class="project-desc">
+Application web progressive (PWA) mettant en relation sportifs et coachs. Permet aux sportifs de progresser grâce à des plans d'entraînement personnalisés, un suivi détaillé des performances et des conseils adaptés. Interface moderne et responsive pour une expérience optimale sur tous les appareils.                     </p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">.NET Core 8</span>
+                        <span class="tag">PostgreSQL</span>
+						<span class="tag">PWA</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="experience">
+            <h2 class="section-title">Parcours Professionnel</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Avril 2022 - Présent</div>
+                        <h3 class="timeline-title">Concepteur Développeur</h3>
+                        <div class="timeline-company">MISMO</div>
+                        <p>Développement full stack de solutions métier et intégrations ERP dans un environnement cloud Azure. Architecture et mise en place de pipelines CI/CD pour automatiser les déploiements.</p>
+						<ul class="exp-missions">
+							<li>Analyse, formalisation et rédaction des besoins fonctionnels et techniques</li>
+							<li>Conception et développement d'API REST et interfaces web métier</li>
+							<li>Création d'interfaces entre ERP et solutions tierces (Office 365, LUCCA, CHORUS)</li>
+							<li>Mise en place de pipelines CI/CD avec Jenkins, GitLab et Docker</li>
+							<li>Déploiement et supervision d'applications cloud Azure</li>
+						</ul>
+						<div class="project-tags">
+							<span class="tag">.NET Core</span>
+							<span class="tag">C#</span>
+							<span class="tag">Java</span>
+							<span class="tag">Spring Boot</span>
+							<span class="tag">SQL Server</span>
+							<span class="tag">Azure</span>
+							<span class="tag">Docker</span>
+							<span class="tag">Jenkins</span>
+						</div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Sept. 2018 - Mai 2022</div>
+                        <h3 class="timeline-title">Ingénieur Études</h3>
+                        <div class="timeline-company">Apside</div>
+                        <p>Missions pour des clients majeurs du secteur bancaire et e-commerce. Développement d'applications web complexes, portails intranet et outils de visualisation de données.</p>
+						<ul class="exp-missions">
+							<li><strong>Euro Information (2019-2020)</strong> - Développement d'outils intranet pour le Crédit Mutuel / CIC</li>
+							<li><strong>Banque Populaire (2020-2021)</strong> - Portail intranet SharePoint 2016, automatisation PowerShell et CI/CD Jenkins</li>
+							<li><strong>Showroomprivé (2021)</strong> - Module d'achat "Purchase Tool" en full stack avec Azure DevOps</li>
+							<li><strong>Air Pays de la Loire (2021-2022)</strong> - Tableaux interactifs de suivi qualité de l'air avec Leaflet et D3.js</li>
+						</ul>
+						<div class="project-tags">
+							<span class="tag">C#</span>
+							<span class="tag">.NET Core</span>
+							<span class="tag">Angular</span>
+							<span class="tag">SharePoint</span>
+							<span class="tag">PowerShell</span>
+							<span class="tag">Azure DevOps</span>
+							<span class="tag">Java</span>
+						</div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Sept. 2015 - Sept. 2018</div>
+                        <h3 class="timeline-title">Consultant Développeur</h3>
+                        <div class="timeline-company">OLEAP</div>
+                        <p>Développement de solutions sur-mesure autour des ERP SAGE 100/1000 pour divers pôles métiers. Spécialisation dans l'automatisation des processus et l'optimisation des flux de données.</p>
+						<ul class="exp-missions">
+							<li>Analyse et recueil des besoins métiers auprès des utilisateurs</li>
+							<li>Développement d'outils pour Comptabilité, Finance, Paie-RH et Gestion commerciale</li>
+							<li>Création d'interfaces web et d'API, optimisation des flux de données</li>
+							<li>Automatisation des processus métiers</li>
+							<li>Collaboration avec équipes certifiées (Gold Microsoft BI)</li>
+						</ul>
+						<div class="project-tags">
+							<span class="tag">C#</span>
+							<span class="tag">.NET</span>
+							<span class="tag">SQL Server</span>
+							<span class="tag">Angular</span>
+							<span class="tag">ASP.NET</span>
+							<span class="tag">Delphi</span>
+						</div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+				
+				<div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Aout. 2014 - Aout. 2015</div>
+                        <h3 class="timeline-title">Développeur Informatique</h3>
+                        <div class="timeline-company">Crédit Agricole Technologies - Vannes</div>
+                        <p>Première expérience professionnelle dans le secteur bancaire. Conception, développement et maintenance d'applications métier.</p>
+						<ul class="exp-missions">
+							<li>Conception et développement d'applications bancaires</li>
+							<li>Maintenance évolutive et corrective</li>
+							<li>Participation aux phases de tests et déploiement</li>
+						</ul>
+						<div class="project-tags">
+							<span class="tag">C#</span>
+							<span class="tag">.NET</span>
+							<span class="tag">SQL Server</span>
+						</div>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="skills">
+            <h2 class="section-title">Stack Technique</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <div class="skill-icon">☕</div>
+                    <div class="skill-name">Java / Spring</div>
+                    <div class="skill-level">Expert</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚡</div>
+                    <div class="skill-name">C# / .NET Core</div>
+                    <div class="skill-level">Avancé</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚛️</div>
+                    <div class="skill-name">React / Angular</div>
+                    <div class="skill-level">Opérationnel</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🐳</div>
+                    <div class="skill-name">Docker</div>
+                    <div class="skill-level">Débutant</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">☁️</div>
+                    <div class="skill-name">Azure / Cloud</div>
+                    <div class="skill-level">Opérationnel</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🔄</div>
+                    <div class="skill-name">CI/CD / DevOps</div>
+                    <div class="skill-level">Débutant</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📊</div>
+                    <div class="skill-name">SQL</div>
+                    <div class="skill-level">Avancé</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🚀</div>
+                    <div class="skill-name">Agile</div>
+                    <div class="skill-level">Opérationnel</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section contact-section" id="contact">
+            <h2 class="section-title">Restons Connectés</h2>
+            <div class="contact-links">
+                <a href="mailto:valentin.bertho@gmail.com" class="contact-btn">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+                <a href="https://www.linkedin.com/in/valentin-bertho-002279b9/" target="_blank" class="contact-btn">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="tel:+33659821052" class="contact-btn">
+                    <i class="fas fa-phone"></i> Téléphone
+                </a>
+            </div>
+            <p style="margin-top: 60px; color: rgba(255, 255, 255, 0.4);">
+                📍 La Chapelle sur Erdre, France
+            </p>
+        </section>
+    </div>
+
+    <script>
+        // Generate stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .timeline-item, .skill-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-content');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                hero.style.opacity = 1 - scrolled / 600;
+            }
+        });
+
+        // Hide scroll indicator on scroll
+        window.addEventListener('scroll', () => {
+            const indicator = document.querySelector('.scroll-indicator');
+            if (indicator) {
+                indicator.style.opacity = window.pageYOffset > 100 ? '0' : '1';
+            }
+        });
+    </script>
+</body>
+</html>
