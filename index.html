@@ -3,682 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valentin Bertho - Full Stack Developer</title>
+    <title>Valentin Bertho - Développeur Full Stack</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #00d4ff;
-            --secondary: #ff6b9d;
-            --accent: #c471ed;
-            --dark: #0a0e27;
-            --darker: #050816;
-            --light: #f8f9fa;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--darker);
-            color: var(--light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 3s infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        nav {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 15px;
-            z-index: 100;
-            background: rgba(10, 14, 39, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 15px 25px;
-            border-radius: 50px;
-            border: 1px solid rgba(0, 212, 255, 0.2);
-        }
-
-        nav a {
-            color: var(--light);
-            text-decoration: none;
-            font-size: 0.9em;
-            transition: all 0.3s;
-            padding: 5px 15px;
-            border-radius: 20px;
-        }
-
-        nav a:hover {
-            background: rgba(0, 212, 255, 0.1);
-            color: var(--primary);
-        }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-content h1 {
-            font-size: clamp(2.5em, 8vw, 6em);
-            font-weight: 900;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 5s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { filter: hue-rotate(0deg); }
-            50% { filter: hue-rotate(30deg); }
-        }
-
-        .hero-content .tagline {
-            font-size: clamp(1.2em, 3vw, 2em);
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 30px;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-		
-		.exp-missions {
-            list-style: none;
-            margin: 20px 0;
-        }
-
-        .exp-missions li {
-            padding-left: 25px;
-            position: relative;
-            margin-bottom: 12px;
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-        }
-
-        .exp-missions li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-size: 1.2em;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3em;
-            font-weight: bold;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .stat-label {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .section {
-            padding: 100px 0;
-            position: relative;
-        }
-
-        .section-title {
-            font-size: clamp(2em, 5vw, 3.5em);
-            text-align: center;
-            margin-bottom: 80px;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            opacity: 0;
-            transition: opacity 0.5s;
-            z-index: -1;
-        }
-
-        .project-card:hover::before {
-            opacity: 0.1;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
-        }
-
-        .project-icon {
-            font-size: 3em;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .project-title {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            color: var(--light);
-        }
-
-        .project-desc {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .tag {
-            background: rgba(0, 212, 255, 0.1);
-            border: 1px solid rgba(0, 212, 255, 0.3);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            color: var(--primary);
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--primary), var(--secondary));
-        }
-
-        .timeline-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 80px;
-            position: relative;
-        }
-
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .timeline-content {
-            width: 45%;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 20px;
-            position: relative;
-            transition: all 0.3s;
-        }
-
-        .timeline-content:hover {
-            transform: scale(1.05);
-            border-color: var(--primary);
-            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 20px;
-            background: var(--primary);
-            border-radius: 50%;
-            box-shadow: 0 0 20px var(--primary);
-        }
-
-        .timeline-date {
-            color: var(--primary);
-            font-weight: bold;
-            margin-bottom: 10px;
-            font-size: 0.9em;
-        }
-
-        .timeline-title {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: var(--light);
-        }
-
-        .timeline-company {
-            color: var(--secondary);
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .skill-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 30px;
-            text-align: center;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
-            transition: left 0.5s;
-        }
-
-        .skill-card:hover::before {
-            left: 100%;
-        }
-
-        .skill-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .skill-icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-
-        .skill-name {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            color: var(--light);
-        }
-
-        .skill-level {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9em;
-        }
-
-        .contact-section {
-            text-align: center;
-            padding: 100px 20px;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 30px;
-            background: rgba(0, 212, 255, 0.1);
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .contact-btn:hover {
-            background: var(--primary);
-            color: var(--darker);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translate(-50%, 0); }
-            50% { transform: translate(-50%, 10px); }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                top: auto;
-                bottom: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 90%;
-                max-width: 300px;
-            }
-
-            .timeline::before {
-                left: 20px;
-            }
-
-            .timeline-item {
-                flex-direction: column !important;
-                align-items: flex-start;
-                padding-left: 50px;
-            }
-
-            .timeline-content {
-                width: 100%;
-            }
-
-            .timeline-dot {
-                left: 20px;
-            }
-
-            .hero-stats {
-                flex-direction: column;
-                gap: 20px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 </head>
 <body>
     <div class="stars" id="stars"></div>
+    <div class="cursor-trail" id="cursorTrail"></div>
 
-    <nav>
+    <nav id="mainNav">
         <a href="#home">Accueil</a>
         <a href="#projects">Projets</a>
         <a href="#experience">Expérience</a>
         <a href="#skills">Compétences</a>
+        <a href="#certifications">Formation</a>
+        <a href="#veille">Veille Tech</a>
         <a href="#contact">Contact</a>
     </nav>
+
+    <!-- Availability Banner -->
+    <div class="availability-banner" id="availabilityBanner">
+        <div class="availability-content">
+            <span class="availability-pulse"></span>
+            <strong>Disponible immédiatement</strong>
+            <span class="separator">•</span>
+            <span>Remote / Hybride</span>
+            <span class="separator">•</span>
+            <span>📍 Nantes + 50km</span>
+        </div>
+    </div>
 
     <div class="container">
         <section class="hero" id="home">
             <div class="hero-content">
-                <h1>Valentin Bertho</h1>
+                <h1 class="typing-text">Valentin Bertho</h1>
                 <p class="tagline">Développeur Full Stack • Architecte Solutions</p>
+                <a href="#" class="download-cv-btn" onclick="downloadCV(event)">
+                    <i class="fas fa-download"></i> Télécharger mon CV
+                </a>
                 <div class="hero-stats">
                     <div class="stat">
-                        <div class="stat-number">10+</div>
+                        <div class="stat-number" data-target="10">0</div>
                         <div class="stat-label">Années d'XP</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" data-target="50">0</div>
+                        <div class="stat-label">Projets livrés</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" data-target="15">0</div>
+                        <div class="stat-label">Technologies</div>
                     </div>
                 </div>
             </div>
             <div class="scroll-indicator">
-                <i class="fas fa-chevron-down" style="color: var(--primary); font-size: 2em;"></i>
+                <i class="fas fa-chevron-down"></i>
             </div>
         </section>
 
+        <!-- Radar Chart Section -->
+        <section class="section" id="radar-section">
+            <h2 class="section-title">Vue d'ensemble des compétences</h2>
+            <div class="radar-container">
+                <canvas id="skillsRadar"></canvas>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
         <section class="section" id="projects">
-            <h2 class="section-title">Side Projects</h2>
+            <h2 class="section-title">Projets Personnels</h2>
             <div class="projects-grid">
-                <div class="project-card">
+                <a href="#" class="project-card" onclick="openModal(event, 'loghelper')">
+                    <span class="card-badge">Cliquer pour détails</span>
                     <div class="project-icon">
                         <i class="fas fa-clipboard-list"></i>
                     </div>
                     <h3 class="project-title">LogHelper</h3>
                     <p class="project-desc">
-Portail de gestion des logs permettant aux techniciens support de consulter simplement les logs d'applications Spring Boot. L'outil filtre les informations verbeux et génère des rapports PDF exportables à destination des développeurs, facilitant grandement le diagnostic et la résolution d'incidents.                     </p>
+                        Portail de gestion des logs permettant aux techniciens support de consulter simplement les logs d'applications Spring Boot...
+                    </p>
                     <div class="project-tags">
                         <span class="tag">Java</span>
                         <span class="tag">Spring Boot</span>
                         <span class="tag">Thymeleaf</span>
-                        <span class="tag">PDF Generation</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="project-card">
+                <a href="#" class="project-card" onclick="openModal(event, 'athaudit')">
+                    <span class="card-badge">Cliquer pour détails</span>
                     <div class="project-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3 class="project-title">Ath Audit</h3>
                     <p class="project-desc">
-Outil d'audit de bases de données en prévision de la mise en conformité pour la facturation électronique obligatoire. Détecte les anomalies : sociétés sans SIRET, SIRET invalides, données erronées. Génère des rapports détaillés pour corriger les données et assurer la conformité réglementaire.                     </p>
+                        Outil d'audit de bases de données en prévision de la mise en conformité pour la facturation électronique...
+                    </p>
                     <div class="project-tags">
                         <span class="tag">Java</span>
                         <span class="tag">Spring Boot</span>
                         <span class="tag">Thymeleaf</span>
-                        <span class="tag">Audit & Conformité</span>
                     </div>
-                </div>
-				
-				<div class="project-card">
+                </a>
+
+                <a href="#" class="project-card" onclick="openModal(event, 'atheneo')">
+                    <span class="card-badge">Cliquer pour détails</span>
                     <div class="project-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
                     <h3 class="project-title">Atheneo Add-in</h3>
-                    <p class="project-desc">Web add in outlook permettant d’intégrer des fonctionnalités personnalisées directement dans la boîte mail pour améliorer la gestion des messages, des contacts et des actions, avec un manifest XML configuré et un hébergement sécurisé sur Vercel.</p>
+                    <p class="project-desc">
+                        Web add in outlook permettant d'intégrer des fonctionnalités personnalisées directement dans la boîte mail...
+                    </p>
                     <div class="project-tags">
                         <span class="tag">Java</span>
                         <span class="tag">Spring Boot</span>
-                        <span class="tag">HTML</span>
-                        <span class="tag">Typescript</span>
-						<span class="tag">Vercel</span>
+                        <span class="tag">TypeScript</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="project-card">
+                <a href="#" class="project-card" onclick="openModal(event, 'trainmate')">
+                    <span class="card-badge">Cliquer pour détails</span>
                     <div class="project-icon">
                         <i class="fas fa-running"></i>
                     </div>
                     <h3 class="project-title">TrainMate</h3>
                     <p class="project-desc">
-Application web progressive (PWA) mettant en relation sportifs et coachs. Permet aux sportifs de progresser grâce à des plans d'entraînement personnalisés, un suivi détaillé des performances et des conseils adaptés. Interface moderne et responsive pour une expérience optimale sur tous les appareils.                     </p>
+                        Application web progressive (PWA) mettant en relation sportifs et coachs...
+                    </p>
                     <div class="project-tags">
                         <span class="tag">React</span>
                         <span class="tag">TypeScript</span>
                         <span class="tag">.NET Core 8</span>
-                        <span class="tag">PostgreSQL</span>
-						<span class="tag">Vercel</span>
-                        <span class="tag">Heroku</span>
-						<span class="tag">PWA</span>
                     </div>
-                </div>
+                </a>
             </div>
         </section>
 
+        <!-- Experience Section -->
         <section class="section" id="experience">
             <h2 class="section-title">Parcours Professionnel</h2>
             <div class="timeline">
                 <div class="timeline-item">
-                    <div class="timeline-content">
+                    <a href="#" class="timeline-content" onclick="openModal(event, 'mismo')">
+                        <span class="card-badge">Cliquer pour détails</span>
                         <div class="timeline-date">Avril 2022 - Présent</div>
                         <h3 class="timeline-title">Concepteur Développeur</h3>
                         <div class="timeline-company">MISMO</div>
-                        <p>Développement full stack de solutions métier et intégrations ERP dans un environnement cloud Azure. Architecture et mise en place de pipelines CI/CD pour automatiser les déploiements.</p>
-						<ul class="exp-missions">
-							<li>Analyse, formalisation et rédaction des besoins fonctionnels et techniques</li>
-							<li>Conception et développement d'API REST et interfaces web métier</li>
-							<li>Création d'interfaces entre ERP et solutions tierces (Office 365, LUCCA, CHORUS)</li>
-							<li>Mise en place de pipelines CI/CD avec Jenkins, GitLab et Docker</li>
-							<li>Déploiement et supervision d'applications cloud Azure</li>
-						</ul>
-						<div class="project-tags">
-							<span class="tag">.NET Core</span>
-							<span class="tag">C#</span>
-							<span class="tag">Java</span>
-							<span class="tag">Spring Boot</span>
-							<span class="tag">SQL Server</span>
-							<span class="tag">Azure</span>
-							<span class="tag">Docker</span>
-							<span class="tag">Jenkins</span>
-						</div>
-                    </div>
+                        <p>Développement full stack de solutions métier et intégrations ERP...</p>
+                        <div class="project-tags">
+                            <span class="tag">.NET Core</span>
+                            <span class="tag">Spring Boot</span>
+                            <span class="tag">Azure</span>
+                        </div>
+                    </a>
                     <div class="timeline-dot"></div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-content">
+                    <a href="#" class="timeline-content" onclick="openModal(event, 'apside')">
+                        <span class="card-badge">Cliquer pour détails</span>
                         <div class="timeline-date">Sept. 2018 - Mai 2022</div>
                         <h3 class="timeline-title">Ingénieur Études</h3>
                         <div class="timeline-company">Apside</div>
-                        <p>Missions pour des clients majeurs du secteur bancaire et e-commerce. Développement d'applications web complexes, portails intranet et outils de visualisation de données.</p>
-						<ul class="exp-missions">
-							<li><strong>Euro Information (2019-2020)</strong> - Développement d'outils intranet pour le Crédit Mutuel / CIC</li>
-							<li><strong>Banque Populaire (2020-2021)</strong> - Portail intranet SharePoint 2016, automatisation PowerShell et CI/CD Jenkins</li>
-							<li><strong>Showroomprivé (2021)</strong> - Module d'achat "Purchase Tool" en full stack avec Azure DevOps</li>
-							<li><strong>Air Pays de la Loire (2021-2022)</strong> - Tableaux interactifs de suivi qualité de l'air avec Leaflet et D3.js</li>
-						</ul>
-						<div class="project-tags">
-							<span class="tag">C#</span>
-							<span class="tag">.NET Core</span>
-							<span class="tag">Angular</span>
-							<span class="tag">SharePoint</span>
-							<span class="tag">PowerShell</span>
-							<span class="tag">Azure DevOps</span>
-							<span class="tag">Java</span>
-						</div>
-                    </div>
+                        <p>Missions bancaires et e-commerce...</p>
+                        <div class="project-tags">
+                            <span class="tag">.NET Core</span>
+                            <span class="tag">Angular</span>
+                        </div>
+                    </a>
                     <div class="timeline-dot"></div>
                 </div>
 
                 <div class="timeline-item">
-                    <div class="timeline-content">
+                    <a href="#" class="timeline-content" onclick="openModal(event, 'oleap')">
+                        <span class="card-badge">Cliquer pour détails</span>
                         <div class="timeline-date">Sept. 2015 - Sept. 2018</div>
                         <h3 class="timeline-title">Consultant Développeur</h3>
                         <div class="timeline-company">OLEAP</div>
-                        <p>Développement de solutions sur-mesure autour des ERP SAGE 100/1000 pour divers pôles métiers. Spécialisation dans l'automatisation des processus et l'optimisation des flux de données.</p>
-						<ul class="exp-missions">
-							<li>Analyse et recueil des besoins métiers auprès des utilisateurs</li>
-							<li>Développement d'outils pour Comptabilité, Finance, Paie-RH et Gestion commerciale</li>
-							<li>Création d'interfaces web et d'API, optimisation des flux de données</li>
-							<li>Automatisation des processus métiers</li>
-							<li>Collaboration avec équipes certifiées (Gold Microsoft BI)</li>
-						</ul>
-						<div class="project-tags">
-							<span class="tag">C#</span>
-							<span class="tag">.NET</span>
-							<span class="tag">SQL Server</span>
-							<span class="tag">Angular</span>
-							<span class="tag">ASP.NET</span>
-							<span class="tag">Delphi</span>
-						</div>
-                    </div>
+                        <p>Solutions ERP SAGE...</p>
+                        <div class="project-tags">
+                            <span class="tag">C#</span>
+                            <span class="tag">.NET</span>
+                        </div>
+                    </a>
                     <div class="timeline-dot"></div>
                 </div>
-				
-				<div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Aout. 2014 - Aout. 2015</div>
-                        <h3 class="timeline-title">Développeur Informatique</h3>
-                        <div class="timeline-company">Crédit Agricole Technologies - Vannes</div>
-                        <p>Première expérience professionnelle dans le secteur bancaire. Conception, développement et maintenance d'applications métier.</p>
-						<ul class="exp-missions">
-							<li>Conception et développement d'applications bancaires</li>
-							<li>Maintenance évolutive et corrective</li>
-							<li>Participation aux phases de tests et déploiement</li>
-						</ul>
-						<div class="project-tags">
-							<span class="tag">C#</span>
-							<span class="tag">.NET</span>
-							<span class="tag">SQL Server</span>
-						</div>
-                    </div>
+
+                <div class="timeline-item">
+                    <a href="#" class="timeline-content" onclick="openModal(event, 'ca')">
+                        <span class="card-badge">Cliquer pour détails</span>
+                        <div class="timeline-date">Août 2014 - Août 2015</div>
+                        <h3 class="timeline-title">Développeur</h3>
+                        <div class="timeline-company">Crédit Agricole</div>
+                        <p>Applications bancaires...</p>
+                        <div class="project-tags">
+                            <span class="tag">C#</span>
+                            <span class="tag">.NET</span>
+                        </div>
+                    </a>
                     <div class="timeline-dot"></div>
                 </div>
             </div>
         </section>
 
+        <!-- Skills Section -->
         <section class="section" id="skills">
             <h2 class="section-title">Stack Technique</h2>
             <div class="skills-container">
@@ -725,8 +254,117 @@ Application web progressive (PWA) mettant en relation sportifs et coachs. Permet
             </div>
         </section>
 
+        <!-- Soft Skills Section -->
+        <section class="section" id="soft-skills">
+            <h2 class="section-title">Méthodologies & Soft Skills</h2>
+            <div class="soft-skills-grid">
+                <div class="soft-skill-card">
+                    <div class="soft-skill-icon">🎯</div>
+                    <h3>Problem Solving</h3>
+                    <p>Analyse rapide et résolution efficace de problèmes techniques complexes</p>
+                </div>
+                <div class="soft-skill-card">
+                    <div class="soft-skill-icon">👥</div>
+                    <h3>Travail d'équipe</h3>
+                    <p>Collaboration étroite avec les équipes métier et technique</p>
+                </div>
+                <div class="soft-skill-card">
+                    <div class="soft-skill-icon">💬</div>
+                    <h3>Communication</h3>
+                    <p>Excellente capacité à vulgariser les concepts techniques</p>
+                </div>
+                <div class="soft-skill-card">
+                    <div class="soft-skill-icon">🔄</div>
+                    <h3>Méthodologie Agile</h3>
+                    <p>Scrum, Sprints, Daily meetings, Rétrospectives</p>
+                </div>
+                <div class="soft-skill-card">
+                    <div class="soft-skill-icon">📚</div>
+                    <h3>Apprentissage continu</h3>
+                    <p>Veille technologique active et formation permanente</p>
+                </div>
+                <div class="soft-skill-card">
+                    <div class="soft-skill-icon">⚡</div>
+                    <h3>Adaptabilité</h3>
+                    <p>Capacité à m'adapter rapidement aux nouvelles technologies</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section class="section" id="certifications">
+            <h2 class="section-title">Formation & Certifications</h2>
+            <div class="certifications-grid">
+                <div class="certification-card">
+                    <div class="cert-icon">🎓</div>
+                    <h3>Licence Professionnelle CSD</h3>
+                    <p class="cert-org">IUT de Vannes</p>
+                    <p class="cert-date">2015</p>
+                    <p class="cert-desc">Conception de Solutions Décisionnelles</p>
+                </div>
+                <div class="certification-card">
+                    <div class="cert-icon">📜</div>
+                    <h3>BTS SIO SLAM</h3>
+                    <p class="cert-org">Notre Dame de La Paix</p>
+                    <p class="cert-date">2012 - 2014</p>
+                    <p class="cert-desc">Solutions Logicielles et Applications Métiers</p>
+                </div>
+                <div class="certification-card">
+                    <div class="cert-icon">💻</div>
+                    <h3>Formation Continue</h3>
+                    <p class="cert-org">Auto-formation</p>
+                    <p class="cert-date">En continu</p>
+                    <p class="cert-desc">.NET 8, Java 21, Spring Boot 3.x, React 18</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Veille Technologique Section -->
+        <section class="section" id="veille">
+            <h2 class="section-title">Veille Technologique</h2>
+            <div class="veille-container">
+                <div class="veille-card current">
+                    <div class="veille-header">
+                        <i class="fas fa-rocket"></i>
+                        <h3>En cours d'apprentissage</h3>
+                    </div>
+                    <ul class="veille-list">
+                        <li><span class="tech-bullet">📦</span> Kubernetes pour l'orchestration</li>
+                        <li><span class="tech-bullet">🏗️</span> Architecture Microservices avancée</li>
+                        <li><span class="tech-bullet">☁️</span> AWS (en complément d'Azure)</li>
+                    </ul>
+                </div>
+                <div class="veille-card future">
+                    <div class="veille-header">
+                        <i class="fas fa-compass"></i>
+                        <h3>Prochaines étapes</h3>
+                    </div>
+                    <ul class="veille-list">
+                        <li><span class="tech-bullet">📱</span> React Native (mobile multi-plateforme)</li>
+                        <li><span class="tech-bullet">🤖</span> Intelligence Artificielle & ML.NET</li>
+                        <li><span class="tech-bullet">🔐</span> Architecture Zero Trust</li>
+                    </ul>
+                </div>
+                <div class="veille-card mastered">
+                    <div class="veille-header">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Récemment maîtrisés</h3>
+                    </div>
+                    <ul class="veille-list">
+                        <li><span class="tech-bullet">✅</span> .NET 8 & C# 12 (2024)</li>
+                        <li><span class="tech-bullet">✅</span> Java 21 & Spring Boot 3.x (2024)</li>
+                        <li><span class="tech-bullet">✅</span> React 18 & Hooks avancés (2023)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
         <section class="section contact-section" id="contact">
             <h2 class="section-title">Restons Connectés</h2>
+            <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.2em; max-width: 600px; margin: 20px auto;">
+                Intéressé par une collaboration ? Un projet innovant à discuter ?
+            </p>
             <div class="contact-links">
                 <a href="mailto:valentin.bertho@gmail.com" class="contact-btn">
                     <i class="fas fa-envelope"></i> Email
@@ -744,68 +382,19 @@ Application web progressive (PWA) mettant en relation sportifs et coachs. Permet
         </section>
     </div>
 
-    <script>
-        // Generate stars
-        const starsContainer = document.getElementById('stars');
-        for (let i = 0; i < 100; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.animationDelay = Math.random() * 3 + 's';
-            starsContainer.appendChild(star);
-        }
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 id="modal-title"></h2>
+                <div class="subtitle" id="modal-subtitle"></div>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.project-card, .timeline-item, .skill-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
-        });
-
-        // Parallax effect for hero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero-content');
-            if (hero) {
-                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-                hero.style.opacity = 1 - scrolled / 600;
-            }
-        });
-
-        // Hide scroll indicator on scroll
-        window.addEventListener('scroll', () => {
-            const indicator = document.querySelector('.scroll-indicator');
-            if (indicator) {
-                indicator.style.opacity = window.pageYOffset > 100 ? '0' : '1';
-            }
-        });
-    </script>
+    <script src="modal-data.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
