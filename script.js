@@ -263,7 +263,7 @@ function initTypingEffect() {
 // ===== INITIALIZE ALL ON LOAD =====
 document.addEventListener('DOMContentLoaded', function() {
     generateStars();
-    initCursorTrail();
+    // initCursorTrail();
     initRadarChart();
     initSmoothScroll();
     initIntersectionObserver();
