@@ -48,7 +48,7 @@ body {
 }
 
 /* ===== CURSOR TRAIL ===== */
-.cursor-trail {
+/* .cursor-trail {
     position: fixed;
     width: 10px;
     height: 10px;
@@ -59,7 +59,7 @@ body {
     mix-blend-mode: screen;
     opacity: 0;
     transition: opacity 0.3s;
-}
+} */
 
 /* ===== AVAILABILITY BANNER ===== */
 .availability-banner {

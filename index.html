@@ -26,11 +26,10 @@
     <div class="availability-banner" id="availabilityBanner">
         <div class="availability-content">
             <span class="availability-pulse"></span>
-            <strong>Disponible immédiatement</strong>
+            <strong>Disponible</strong>
             <span class="separator">•</span>
-            <span>Remote / Hybride</span>
             <span class="separator">•</span>
-            <span>📍 Nantes + 50km</span>
+            <span>📍 Nantes / Vannes</span>
         </div>
     </div>
 
@@ -38,7 +37,7 @@
         <section class="hero" id="home">
             <div class="hero-content">
                 <h1 class="typing-text">Valentin Bertho</h1>
-                <p class="tagline">Développeur Full Stack • Architecte Solutions</p>
+                <p class="tagline">Développeur Full Stack Senior • Conception, Intégration, Développement & Analyse fonctionnelle</p>
                 <a href="#" class="download-cv-btn" onclick="downloadCV(event)">
                     <i class="fas fa-download"></i> Télécharger mon CV
                 </a>
@@ -46,14 +45,6 @@
                     <div class="stat">
                         <div class="stat-number" data-target="10">0</div>
                         <div class="stat-label">Années d'XP</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number" data-target="50">0</div>
-                        <div class="stat-label">Projets livrés</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number" data-target="15">0</div>
-                        <div class="stat-label">Technologies</div>
                     </div>
                 </div>
             </div>
@@ -72,7 +63,28 @@
 
         <!-- Projects Section -->
         <section class="section" id="projects">
-            <h2 class="section-title">Projets Personnels</h2>
+            <h2 class="section-title">Projet Personnel</h2>
+            <div class="projects-grid">
+                <a href="#" class="project-card" onclick="openModal(event, 'trainmate')">
+                    <span class="card-badge">Cliquer pour détails</span>
+                    <div class="project-icon">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3 class="project-title">TrainMate</h3>
+                    <p class="project-desc">
+                        Application web progressive (PWA) mettant en relation sportifs et coachs...
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">.NET Core 8</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="section" id="projects-pro">
+            <h2 class="section-title">Projets Pros</h2>
             <div class="projects-grid">
                 <a href="#" class="project-card" onclick="openModal(event, 'loghelper')">
                     <span class="card-badge">Cliquer pour détails</span>
@@ -119,22 +131,6 @@
                         <span class="tag">Java</span>
                         <span class="tag">Spring Boot</span>
                         <span class="tag">TypeScript</span>
-                    </div>
-                </a>
-
-                <a href="#" class="project-card" onclick="openModal(event, 'trainmate')">
-                    <span class="card-badge">Cliquer pour détails</span>
-                    <div class="project-icon">
-                        <i class="fas fa-running"></i>
-                    </div>
-                    <h3 class="project-title">TrainMate</h3>
-                    <p class="project-desc">
-                        Application web progressive (PWA) mettant en relation sportifs et coachs...
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">TypeScript</span>
-                        <span class="tag">.NET Core 8</span>
                     </div>
                 </a>
             </div>
@@ -213,7 +209,7 @@
             <div class="skills-container">
                 <div class="skill-card">
                     <div class="skill-icon">☕</div>
-                    <div class="skill-name">Java / Spring</div>
+                    <div class="skill-name">Java / Spring boot</div>
                     <div class="skill-level">Expert</div>
                 </div>
                 <div class="skill-card">
@@ -260,7 +256,7 @@
             <div class="soft-skills-grid">
                 <div class="soft-skill-card">
                     <div class="soft-skill-icon">🎯</div>
-                    <h3>Problem Solving</h3>
+                    <h3>Résolution de problèmes</h3>
                     <p>Analyse rapide et résolution efficace de problèmes techniques complexes</p>
                 </div>
                 <div class="soft-skill-card">
@@ -314,7 +310,7 @@
                     <h3>Formation Continue</h3>
                     <p class="cert-org">Auto-formation</p>
                     <p class="cert-date">En continu</p>
-                    <p class="cert-desc">.NET 8, Java 21, Spring Boot 3.x, React 18</p>
+                    <p class="cert-desc">.NET 8, Java 21, Spring Boot 3.x, React 18, CI/CD</p>
                 </div>
             </div>
         </section>
@@ -330,7 +326,7 @@
                     </div>
                     <ul class="veille-list">
                         <li><span class="tech-bullet">📦</span> Kubernetes pour l'orchestration</li>
-                        <li><span class="tech-bullet">🏗️</span> Architecture Microservices avancée</li>
+                        <li><span class="tech-bullet">🏗️</span> Intégration VERCEL / CLOUDFLARE / RAILWAY</li>
                         <li><span class="tech-bullet">☁️</span> AWS (en complément d'Azure)</li>
                     </ul>
                 </div>
@@ -340,9 +336,9 @@
                         <h3>Prochaines étapes</h3>
                     </div>
                     <ul class="veille-list">
-                        <li><span class="tech-bullet">📱</span> React Native (mobile multi-plateforme)</li>
-                        <li><span class="tech-bullet">🤖</span> Intelligence Artificielle & ML.NET</li>
-                        <li><span class="tech-bullet">🔐</span> Architecture Zero Trust</li>
+                        <li><span class="tech-bullet">📱</span> React avancé</li>
+                        <li><span class="tech-bullet">🤖</span> CI / CD avancé</li>
+                        <!-- <li><span class="tech-bullet">🔐</span> Architecture Zero Trust</li> -->
                     </ul>
                 </div>
                 <div class="veille-card mastered">
@@ -351,6 +347,7 @@
                         <h3>Récemment maîtrisés</h3>
                     </div>
                     <ul class="veille-list">
+                        <li><span class="tech-bullet">✅</span> Génération d'images Docker (2024)</li>
                         <li><span class="tech-bullet">✅</span> .NET 8 & C# 12 (2024)</li>
                         <li><span class="tech-bullet">✅</span> Java 21 & Spring Boot 3.x (2024)</li>
                         <li><span class="tech-bullet">✅</span> React 18 & Hooks avancés (2023)</li>
@@ -362,9 +359,6 @@
         <!-- Contact Section -->
         <section class="section contact-section" id="contact">
             <h2 class="section-title">Restons Connectés</h2>
-            <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.2em; max-width: 600px; margin: 20px auto;">
-                Intéressé par une collaboration ? Un projet innovant à discuter ?
-            </p>
             <div class="contact-links">
                 <a href="mailto:valentin.bertho@gmail.com" class="contact-btn">
                     <i class="fas fa-envelope"></i> Email

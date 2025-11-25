@@ -12,29 +12,29 @@ function generateStars() {
 }
 
 // ===== CURSOR TRAIL =====
-function initCursorTrail() {
-    const trail = document.getElementById('cursorTrail');
-    let mouseX = 0, mouseY = 0;
-    let trailX = 0, trailY = 0;
+// function initCursorTrail() {
+//     const trail = document.getElementById('cursorTrail');
+//     let mouseX = 0, mouseY = 0;
+//     let trailX = 0, trailY = 0;
 
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        trail.style.opacity = '0.6';
-    });
+//     document.addEventListener('mousemove', (e) => {
+//         mouseX = e.clientX;
+//         mouseY = e.clientY;
+//         trail.style.opacity = '0.6';
+//     });
 
-    function animateTrail() {
-        trailX += (mouseX - trailX) * 0.1;
-        trailY += (mouseY - trailY) * 0.1;
+//     function animateTrail() {
+//         trailX += (mouseX - trailX) * 0.1;
+//         trailY += (mouseY - trailY) * 0.1;
         
-        trail.style.left = trailX + 'px';
-        trail.style.top = trailY + 'px';
+//         trail.style.left = trailX + 'px';
+//         trail.style.top = trailY + 'px';
         
-        requestAnimationFrame(animateTrail);
-    }
+//         requestAnimationFrame(animateTrail);
+//     }
 
-    animateTrail();
-}
+//     animateTrail();
+// }
 
 // ===== COUNTER ANIMATION =====
 function animateCounters() {
@@ -66,10 +66,10 @@ function initRadarChart() {
     new Chart(ctx, {
         type: 'radar',
         data: {
-            labels: ['Backend', 'Frontend', 'DevOps', 'Architecture', 'Database', 'Agile'],
+            labels: ['Backend', 'Frontend', 'DevOps', 'Architecture', 'BDD', 'Agile', 'Fonctionnel'],
             datasets: [{
                 label: 'Niveau de compétence',
-                data: [9, 7, 6, 8, 8, 7],
+                data: [9, 7, 5, 7, 8, 7, 7],
                 fill: true,
                 backgroundColor: 'rgba(0, 212, 255, 0.2)',
                 borderColor: 'rgb(0, 212, 255)',
@@ -77,7 +77,7 @@ function initRadarChart() {
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
                 pointHoverBorderColor: 'rgb(0, 212, 255)',
-                pointRadius: 6,
+                pointRadius: 2,
                 pointHoverRadius: 8
             }]
         },
@@ -157,7 +157,8 @@ document.addEventListener('keydown', function(event) {
 // ===== DOWNLOAD CV =====
 function downloadCV(event) {
     event.preventDefault();
-    alert('Fonctionnalité de téléchargement du CV à implémenter.\n\nVous devrez :\n1. Créer un fichier PDF de votre CV\n2. Le placer dans votre repository GitHub\n3. Remplacer cette alerte par :\n\nwindow.location.href = "votre-cv.pdf";');
+    window.location.href="CV.pdf";
+    // alert('Fonctionnalité de téléchargement du CV à implémenter.\n\nVous devrez :\n1. Créer un fichier PDF de votre CV\n2. Le placer dans votre repository GitHub\n3. Remplacer cette alerte par :\n\nwindow.location.href = "votre-cv.pdf";');
 }
 
 // ===== SMOOTH SCROLL =====
