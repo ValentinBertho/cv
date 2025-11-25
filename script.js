@@ -96,12 +96,12 @@ function initRadarChart() {
                             size: 14
                         }
                     },
+                    min: 0,
+                    max: 10,
                     ticks: {
                         color: 'rgba(255, 255, 255, 0.6)',
                         backdropColor: 'transparent',
-                        stepSize: 2,
-                        min: 0,
-                        max: 10
+                        stepSize: 2
                     }
                 }
             },

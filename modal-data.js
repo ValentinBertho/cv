@@ -124,10 +124,10 @@ const modalData = {
                 <p>TrainMate est une Progressive Web App (PWA) innovante qui met en relation des sportifs et des coachs professionnels. L'application offre une plateforme complète pour la création de plans d'entraînement personnalisés.</p>
             </div>
 
-            <div class="image-placeholder">
-                <i class="fas fa-image" style="font-size: 3em; margin-right: 15px;"></i>
-                Dashboard sportif TrainMate
+            <div class="image-container">
+                <img src="Train.png" alt="Dashboard sportif TrainMate" style="max-width: 100%; height: auto;">
             </div>
+
 
             <div class="modal-section">
                 <h3>Fonctionnalités principales</h3>
