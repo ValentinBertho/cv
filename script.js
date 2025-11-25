@@ -66,10 +66,10 @@ function initRadarChart() {
     new Chart(ctx, {
         type: 'radar',
         data: {
-            labels: ['Backend', 'Frontend', 'DevOps', 'Architecture', 'BDD', 'Agile', 'Fonctionnel'],
+            labels: ['Backend', 'Frontend', 'DevOps', 'Architecture', 'BDD', 'Agile'],
             datasets: [{
                 label: 'Niveau de compétence',
-                data: [9, 7, 5, 7, 8, 7, 7],
+                data: [9, 7, 5, 7, 8, 7],
                 fill: true,
                 backgroundColor: 'rgba(0, 212, 255, 0.2)',
                 borderColor: 'rgb(0, 212, 255)',
@@ -157,7 +157,7 @@ document.addEventListener('keydown', function(event) {
 // ===== DOWNLOAD CV =====
 function downloadCV(event) {
     event.preventDefault();
-    window.location.href="CV.pdf";
+    window.open("CV.pdf", "_blank");
     // alert('Fonctionnalité de téléchargement du CV à implémenter.\n\nVous devrez :\n1. Créer un fichier PDF de votre CV\n2. Le placer dans votre repository GitHub\n3. Remplacer cette alerte par :\n\nwindow.location.href = "votre-cv.pdf";');
 }
 
