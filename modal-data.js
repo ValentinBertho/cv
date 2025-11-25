@@ -10,9 +10,9 @@ const modalData = {
             </div>
 
             <div class="image-placeholder">
-                <i class="fas fa-image" style="font-size: 3em; margin-right: 15px;"></i>
-                Capture d'écran du dashboard LogHelper
+                <img src="logs.png" alt="Logs" style="width: 100%; height: auto;">
             </div>
+
 
             <div class="modal-section">
                 <h3>Fonctionnalités principales</h3>
@@ -51,9 +51,9 @@ const modalData = {
             </div>
 
             <div class="image-placeholder">
-                <i class="fas fa-image" style="font-size: 3em; margin-right: 15px;"></i>
-                Interface principale d'Ath Audit
+                <img src="audit.png" alt="Interface principale d'Ath Audit" style="width: 100%; height: auto;">
             </div>
+
 
             <div class="modal-section">
                 <h3>Fonctionnalités clés</h3>
@@ -89,9 +89,9 @@ const modalData = {
             </div>
 
             <div class="image-placeholder">
-                <i class="fas fa-image" style="font-size: 3em; margin-right: 15px;"></i>
-                Add-in intégré dans Outlook
+                <img src="addin.png" alt="Add-in intégré dans Outlook" style="width: 100%; height: auto;">
             </div>
+
 
             <div class="modal-section">
                 <h3>Fonctionnalités principales</h3>
