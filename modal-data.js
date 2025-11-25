@@ -10,9 +10,8 @@ const modalData = {
             </div>
 
             <div class="image-placeholder">
-                <img src="logs.png" alt="Logs" style="width: 100%; height: auto;">
+                <img src="logs.png" alt="Logs" style="width: 80%; height: auto;">
             </div>
-
 
             <div class="modal-section">
                 <h3>Fonctionnalités principales</h3>
@@ -51,7 +50,7 @@ const modalData = {
             </div>
 
             <div class="image-placeholder">
-                <img src="audit.png" alt="Interface principale d'Ath Audit" style="width: 100%; height: auto;">
+                <img src="audit.png" alt="Interface principale d'Ath Audit" style="width: 80%; height: auto;">
             </div>
 
 
@@ -89,7 +88,7 @@ const modalData = {
             </div>
 
             <div class="image-placeholder">
-                <img src="addin.png" alt="Add-in intégré dans Outlook" style="width: 100%; height: auto;">
+                <img src="addin.png" alt="Add-in intégré dans Outlook" style="width: 80%; height: auto;">
             </div>
 
 
