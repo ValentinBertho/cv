@@ -198,6 +198,19 @@ function initIntersectionObserver() {
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
+
+    // Animate section titles
+    const titleObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.section-title').forEach(title => {
+        titleObserver.observe(title);
+    });
 }
 
 // ===== PARALLAX EFFECT =====
@@ -260,9 +273,83 @@ function initTypingEffect() {
     setTimeout(typeWriter, 500);
 }
 
+// ===== PROGRESS NAVIGATION =====
+function initProgressNavigation() {
+    const sections = document.querySelectorAll('.section, .hero');
+    const navDots = document.querySelectorAll('.nav-dot');
+    const progressBar = document.getElementById('progressBar');
+
+    function updateActiveSection() {
+        const scrollPosition = window.pageYOffset + window.innerHeight / 2;
+
+        sections.forEach((section, index) => {
+            const sectionTop = section.offsetTop;
+            const sectionBottom = sectionTop + section.offsetHeight;
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                navDots.forEach(dot => dot.classList.remove('active'));
+                const matchingDot = document.querySelector(`.nav-dot[data-section="${section.id}"]`);
+                if (matchingDot) {
+                    matchingDot.classList.add('active');
+                }
+            }
+        });
+
+        // Update progress bar
+        const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = (window.pageYOffset / windowHeight) * 100;
+        progressBar.style.height = scrolled + '%';
+    }
+
+    window.addEventListener('scroll', updateActiveSection);
+    updateActiveSection();
+}
+
+// ===== TILT EFFECT ON CARDS =====
+function initTiltEffect() {
+    const cards = document.querySelectorAll('.project-card, .skill-card, .certification-card');
+
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            const rotateX = ((y - centerY) / centerY) * -10;
+            const rotateY = ((x - centerX) / centerX) * 10;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+        });
+    });
+}
+
+// ===== FLOATING PARTICLES =====
+function generateParticles() {
+    const starsContainer = document.getElementById('stars');
+
+    // Add some larger glowing particles
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 5 + 's';
+        particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        starsContainer.appendChild(particle);
+    }
+}
+
 // ===== INITIALIZE ALL ON LOAD =====
 document.addEventListener('DOMContentLoaded', function() {
     generateStars();
+    generateParticles();
     // initCursorTrail();
     initRadarChart();
     initSmoothScroll();
@@ -271,7 +358,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollIndicator();
     initAvailabilityBanner();
     initTypingEffect();
-    
+    initProgressNavigation();
+    initTiltEffect();
+
     // Animate counters when hero section is visible
     const heroObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -281,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, { threshold: 0.5 });
-    
+
     const hero = document.querySelector('.hero');
     if (hero) {
         heroObserver.observe(hero);
