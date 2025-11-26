@@ -12,6 +12,9 @@
     --dark: #0a0e27;
     --darker: #050816;
     --light: #f8f9fa;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 body {
@@ -20,6 +23,30 @@ body {
     color: var(--light);
     line-height: 1.6;
     overflow-x: hidden;
+    position: relative;
+}
+
+/* Animated gradient background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg,
+        rgba(0, 212, 255, 0.05) 0%,
+        rgba(196, 113, 237, 0.05) 50%,
+        rgba(255, 107, 157, 0.05) 100%);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes gradientMove {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
 }
 
 /* ===== STARS BACKGROUND ===== */
@@ -45,6 +72,28 @@ body {
 @keyframes twinkle {
     0%, 100% { opacity: 0.3; }
     50% { opacity: 1; }
+}
+
+/* Floating particles */
+.particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, var(--primary), transparent);
+    border-radius: 50%;
+    animation: float 6s infinite ease-in-out;
+    filter: blur(1px);
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-30px) translateX(20px);
+        opacity: 0.8;
+    }
 }
 
 /* ===== CURSOR TRAIL ===== */
@@ -133,11 +182,19 @@ nav {
     display: flex;
     gap: 15px;
     z-index: 100;
-    background: rgba(10, 14, 39, 0.8);
-    backdrop-filter: blur(10px);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     padding: 15px 25px;
     border-radius: 50px;
-    border: 1px solid rgba(0, 212, 255, 0.2);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+nav:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
 }
 
 nav a {
@@ -151,6 +208,106 @@ nav a {
 
 nav a:hover {
     background: rgba(0, 212, 255, 0.1);
+    color: var(--primary);
+}
+
+/* ===== PROGRESS NAVIGATION ===== */
+.progress-nav {
+    position: fixed;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.progress-bar-container {
+    width: 3px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(180deg, var(--primary), var(--secondary), var(--accent));
+    border-radius: 10px;
+    transition: height 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+}
+
+.nav-dots {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.nav-dot {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-dot .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.nav-dot .dot::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: var(--primary);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-dot.active .dot,
+.nav-dot:hover .dot {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+    transform: scale(1.3);
+}
+
+.nav-dot.active .dot::before {
+    width: 6px;
+    height: 6px;
+    background: white;
+}
+
+.nav-dot .dot-label {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85em;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.nav-dot:hover .dot-label,
+.nav-dot.active .dot-label {
+    opacity: 1;
+    transform: translateX(0);
     color: var(--primary);
 }
 
@@ -169,15 +326,36 @@ nav a:hover {
     font-weight: 900;
     margin-bottom: 20px;
     background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+    background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: gradientShift 5s ease infinite;
+    animation: gradientShift 8s ease infinite;
+    position: relative;
+}
+
+.hero-content h1::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: blur(20px);
+    opacity: 0.5;
 }
 
 @keyframes gradientShift {
-    0%, 100% { filter: hue-rotate(0deg); }
-    50% { filter: hue-rotate(30deg); }
+    0%, 100% {
+        background-position: 0% 50%;
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        background-position: 100% 50%;
+        filter: hue-rotate(20deg);
+    }
 }
 
 .typing-text::after {
@@ -202,19 +380,55 @@ nav a:hover {
     gap: 10px;
     padding: 15px 35px;
     background: linear-gradient(135deg, var(--primary), var(--accent));
+    background-size: 200% 200%;
     color: var(--darker);
     text-decoration: none;
     border-radius: 50px;
     font-weight: bold;
     font-size: 1.1em;
     margin-top: 30px;
-    transition: all 0.3s;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.download-cv-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.download-cv-btn:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .download-cv-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.6);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.6);
+    background-position: 100% 0;
+}
+
+.download-cv-btn i {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.download-cv-btn:hover i {
+    transform: translateY(3px);
+    animation: bounce-download 0.6s ease-in-out infinite;
+}
+
+@keyframes bounce-download {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
 }
 
 .hero-stats {
@@ -270,6 +484,14 @@ nav a:hover {
     text-align: center;
     margin-bottom: 80px;
     position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-title.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .section-title::after {
@@ -277,11 +499,16 @@ nav a:hover {
     position: absolute;
     bottom: -20px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) scaleX(0);
     width: 100px;
     height: 4px;
     background: linear-gradient(90deg, var(--primary), var(--secondary));
     border-radius: 2px;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+}
+
+.section-title.visible::after {
+    transform: translateX(-50%) scaleX(1);
 }
 
 /* ===== RADAR CHART ===== */
@@ -289,9 +516,18 @@ nav a:hover {
     max-width: 600px;
     margin: 0 auto;
     padding: 40px;
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.radar-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 50px rgba(0, 212, 255, 0.2);
 }
 
 /* ===== PROJECTS GRID ===== */
@@ -303,8 +539,10 @@ nav a:hover {
 }
 
 .project-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
     border-radius: 20px;
     padding: 40px;
     position: relative;
@@ -314,6 +552,9 @@ nav a:hover {
     text-decoration: none;
     color: inherit;
     display: block;
+    box-shadow: var(--glass-shadow);
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 #projects .projects-grid {
@@ -338,9 +579,11 @@ nav a:hover {
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-15px) scale(1.02);
     border-color: var(--primary);
-    box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 25px 70px rgba(0, 212, 255, 0.4),
+                0 0 40px rgba(0, 212, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .card-badge {
@@ -390,6 +633,15 @@ nav a:hover {
     border-radius: 20px;
     font-size: 0.85em;
     color: var(--primary);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.tag:hover {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: var(--primary);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
 }
 
 /* ===== TIMELINE ===== */
@@ -423,16 +675,19 @@ nav a:hover {
 
 .timeline-content {
     width: 45%;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
     border-radius: 20px;
     padding: 30px;
     position: relative;
-    transition: all 0.5s;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     text-decoration: none;
     color: inherit;
     display: block;
+    box-shadow: var(--glass-shadow);
 }
 
 .timeline-content::before {
@@ -499,14 +754,17 @@ nav a:hover {
 }
 
 .skill-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
     border-radius: 20px;
     padding: 30px;
     text-align: center;
-    transition: all 0.3s;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    box-shadow: var(--glass-shadow);
 }
 
 .skill-card::before {
@@ -526,7 +784,9 @@ nav a:hover {
 
 .skill-card:hover {
     border-color: var(--primary);
-    transform: translateY(-5px);
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 20px 50px rgba(0, 212, 255, 0.3);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .skill-icon {
@@ -555,14 +815,17 @@ nav a:hover {
 }
 
 .soft-skill-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
     border-radius: 20px;
     padding: 35px;
     text-align: center;
-    transition: all 0.4s;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    box-shadow: var(--glass-shadow);
 }
 
 .soft-skill-card::before {
@@ -613,13 +876,16 @@ nav a:hover {
 }
 
 .certification-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
     border-radius: 20px;
     padding: 35px;
     text-align: center;
-    transition: all 0.4s;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    box-shadow: var(--glass-shadow);
 }
 
 .certification-card:hover {
@@ -666,11 +932,14 @@ nav a:hover {
 }
 
 .veille-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--glass-border);
     border-radius: 20px;
     padding: 35px;
-    transition: all 0.4s;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--glass-shadow);
 }
 
 .veille-card.current {
@@ -758,14 +1027,48 @@ nav a:hover {
     text-decoration: none;
     border-radius: 50px;
     font-weight: bold;
-    transition: all 0.3s;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: var(--primary);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+}
+
+.contact-btn:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .contact-btn:hover {
-    background: var(--primary);
     color: var(--darker);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5);
+}
+
+.contact-btn i {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s;
+}
+
+.contact-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+.contact-btn:hover i {
+    transform: scale(1.2) rotate(5deg);
 }
 
 /* ===== MODAL ===== */
@@ -909,13 +1212,25 @@ nav a:hover {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     nav {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         top: auto;
         bottom: 20px;
         left: 50%;
         transform: translateX(-50%);
         width: 90%;
-        max-width: 300px;
+        max-width: 400px;
+        padding: 10px 15px;
+        gap: 8px;
+    }
+
+    nav a {
+        font-size: 0.75em;
+        padding: 5px 10px;
+    }
+
+    .progress-nav {
+        display: none;
     }
 
     .availability-banner {
@@ -965,5 +1280,44 @@ nav a:hover {
     .certifications-grid,
     .veille-container {
         grid-template-columns: 1fr;
+    }
+
+    .project-card,
+    .skill-card,
+    .certification-card {
+        padding: 25px;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+
+    .section-title {
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        gap: 5px;
+        padding: 8px 12px;
+    }
+
+    nav a {
+        font-size: 0.7em;
+        padding: 4px 8px;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2em, 10vw, 3em);
+    }
+
+    .hero-content .tagline {
+        font-size: 1em;
+    }
+
+    .download-cv-btn {
+        padding: 12px 25px;
+        font-size: 0.95em;
     }
 }

@@ -22,6 +22,43 @@
         <a href="#contact">Contact</a>
     </nav>
 
+    <!-- Progress Navigation -->
+    <div class="progress-nav" id="progressNav">
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="nav-dots">
+            <a href="#home" class="nav-dot active" data-section="home" title="Accueil">
+                <span class="dot"></span>
+                <span class="dot-label">Accueil</span>
+            </a>
+            <a href="#projects" class="nav-dot" data-section="projects" title="Projets">
+                <span class="dot"></span>
+                <span class="dot-label">Projets</span>
+            </a>
+            <a href="#experience" class="nav-dot" data-section="experience" title="Expérience">
+                <span class="dot"></span>
+                <span class="dot-label">Expérience</span>
+            </a>
+            <a href="#skills" class="nav-dot" data-section="skills" title="Compétences">
+                <span class="dot"></span>
+                <span class="dot-label">Compétences</span>
+            </a>
+            <a href="#certifications" class="nav-dot" data-section="certifications" title="Formation">
+                <span class="dot"></span>
+                <span class="dot-label">Formation</span>
+            </a>
+            <a href="#veille" class="nav-dot" data-section="veille" title="Veille">
+                <span class="dot"></span>
+                <span class="dot-label">Veille</span>
+            </a>
+            <a href="#contact" class="nav-dot" data-section="contact" title="Contact">
+                <span class="dot"></span>
+                <span class="dot-label">Contact</span>
+            </a>
+        </div>
+    </div>
+
     <!-- Availability Banner -->
     <!-- <div class="availability-banner" id="availabilityBanner">
         <div class="availability-content">
@@ -36,7 +73,7 @@
     <div class="container">
         <section class="hero" id="home">
             <div class="hero-content">
-                <h1 class="typing-text">Valentin Bertho</h1>
+                <h1 class="typing-text" data-text="Valentin Bertho">Valentin Bertho</h1>
                 <p class="tagline">Développeur Full Stack Senior • Analyse & Architecture Fonctionnelle</p>
                 <a href="#" class="download-cv-btn" onclick="downloadCV(event)">
                     <i class="fas fa-download"></i> Télécharger mon CV
