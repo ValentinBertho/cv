@@ -37,26 +37,26 @@ function generateStars() {
 // }
 
 // ===== COUNTER ANIMATION =====
-function animateCounters() {
-    const counters = document.querySelectorAll('.stat-number');
+// function animateCounters() {
+//     const counters = document.querySelectorAll('.stat-number');
     
-    counters.forEach(counter => {
-        const target = parseInt(counter.getAttribute('data-target'));
-        const duration = 2000;
-        const increment = target / (duration / 16);
-        let current = 0;
+//     counters.forEach(counter => {
+//         const target = parseInt(counter.getAttribute('data-target'));
+//         const duration = 2000;
+//         const increment = target / (duration / 16);
+//         let current = 0;
         
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                counter.textContent = target + '+';
-                clearInterval(timer);
-            } else {
-                counter.textContent = Math.floor(current);
-            }
-        }, 16);
-    });
-}
+//         const timer = setInterval(() => {
+//             current += increment;
+//             if (current >= target) {
+//                 counter.textContent = target + '+';
+//                 clearInterval(timer);
+//             } else {
+//                 counter.textContent = Math.floor(current);
+//             }
+//         }, 16);
+//     });
+// }
 
 // ===== RADAR CHART =====
 function initRadarChart() {
