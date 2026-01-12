@@ -9,10 +9,6 @@ const modalData = {
                 <p>LogHelper est une solution complète de gestion et d'analyse de logs conçue pour simplifier le travail des équipes de support technique. Face à la verbosité excessive des logs Spring Boot, l'application offre une interface intuitive pour filtrer, analyser et exporter les informations pertinentes.</p>
             </div>
 
-            <div class="image-placeholder">
-                <img src="logs.png" alt="Logs" style="width: 100%; height: auto;">
-            </div>
-
             <div class="modal-section">
                 <h3>Fonctionnalités principales</h3>
                 <ul>
@@ -49,10 +45,6 @@ const modalData = {
                 <p>Ath Audit est un outil d'audit automatisé de bases de données développé en anticipation de l'obligation de facturation électronique. L'application analyse les données d'entreprise pour détecter les anomalies et non-conformités.</p>
             </div>
 
-            <div class="image-placeholder">
-                <img src="audit.png" alt="Interface principale d'Ath Audit" style="width: 100%; height: auto;">
-            </div>
-
 
             <div class="modal-section">
                 <h3>Fonctionnalités clés</h3>
@@ -86,11 +78,6 @@ const modalData = {
                 <h3>Vue d'ensemble</h3>
                 <p>Atheneo Add-in est une extension web pour Microsoft Outlook qui enrichit l'expérience utilisateur en intégrant des fonctionnalités personnalisées directement dans l'interface mail.</p>
             </div>
-
-            <div class="image-placeholder">
-                <img src="addin.png" alt="Add-in intégré dans Outlook" style="width: 100%; height: auto;">
-            </div>
-
 
             <div class="modal-section">
                 <h3>Fonctionnalités principales</h3>
@@ -131,8 +118,6 @@ const modalData = {
                     <li>Saisie de comptes-rendus d'intervention sur site</li>
                     <li>Accès aux stocks et gestion des pièces détachées</li>
                     <li>Signature électronique des bons d'intervention</li>
-                    <li>Mode hors-ligne avec synchronisation automatique</li>
-                    <li>Géolocalisation et planification d'itinéraires</li>
                     <li>Scan de codes-barres et QR codes</li>
                 </ul>
             </div>
@@ -140,10 +125,8 @@ const modalData = {
             <div class="modal-section">
                 <h3>Défis techniques</h3>
                 <ul>
-                    <li>Synchronisation bidirectionnelle des données en mode déconnecté</li>
-                    <li>Optimisation des performances pour les appareils mobiles</li>
+                    <li>Synchronisation bidirectionnelle des données</li>
                     <li>Gestion de la sécurité et authentification mobile</li>
-                    <li>Adaptation de l'interface utilisateur pour petits écrans</li>
                 </ul>
             </div>
 
@@ -154,7 +137,6 @@ const modalData = {
                     <div class="tech-item">Spring Boot 3.x</div>
                     <div class="tech-item">React Native</div>
                     <div class="tech-item">Redux</div>
-                    <div class="tech-item">SQLite</div>
                     <div class="tech-item">REST API</div>
                     <div class="tech-item">JWT Authentication</div>
                     <div class="tech-item">SQL Server</div>
@@ -177,8 +159,8 @@ const modalData = {
                     <li>Saisie intuitive des dépenses avec catégorisation automatique</li>
                     <li>Capture photo et OCR des justificatifs</li>
                     <li>Calcul automatique des indemnités kilométriques</li>
-                    <li>Workflow de validation hiérarchique configurable</li>
-                    <li>Intégration comptable automatique dans l'ERP</li>
+                    <li>Workflow de validation hiérarchique</li>
+                    <li>Intégration comptable dans l'ERP</li>
                     <li>Export des déclarations de TVA</li>
                     <li>Dashboard de suivi des dépenses par collaborateur</li>
                     <li>Notifications et rappels automatiques</li>
@@ -189,7 +171,6 @@ const modalData = {
             <div class="modal-section">
                 <h3>Avantages métier</h3>
                 <ul>
-                    <li>Réduction du temps de traitement des notes de frais de 70%</li>
                     <li>Diminution des erreurs de saisie grâce à l'OCR</li>
                     <li>Amélioration de la traçabilité et conformité</li>
                     <li>Accélération des remboursements pour les collaborateurs</li>
@@ -205,7 +186,7 @@ const modalData = {
                     <div class="tech-item">TypeScript</div>
                     <div class="tech-item">Material-UI</div>
                     <div class="tech-item">SQL Server</div>
-                    <div class="tech-item">Tesseract OCR</div>
+                    <div class="tech-item">OCR</div>
                     <div class="tech-item">REST API</div>
                 </div>
             </div>
