@@ -358,6 +358,7 @@ nav a:hover {
     }
 }
 
+/* Animation de clignotement désactivée
 .typing-text::after {
     content: '|';
     animation: blink 1s infinite;
@@ -367,6 +368,7 @@ nav a:hover {
     0%, 50% { opacity: 1; }
     51%, 100% { opacity: 0; }
 }
+*/
 
 .hero-content .tagline {
     font-size: clamp(1.2em, 3vw, 2em);

@@ -114,6 +114,103 @@ const modalData = {
             </div>
         `
     },
+    atheneomobile: {
+        title: 'Application Mobile ERP Atheneo',
+        subtitle: 'Solution mobile pour techniciens terrain',
+        content: `
+            <div class="modal-section">
+                <h3>Vue d'ensemble</h3>
+                <p>Application mobile native développée pour permettre aux techniciens terrain d'accéder aux fonctionnalités essentielles de l'ERP Atheneo en situation de mobilité. Cette solution améliore considérablement la productivité des équipes en déplacement en leur offrant un accès temps réel aux informations critiques.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>Fonctionnalités principales</h3>
+                <ul>
+                    <li>Consultation des fiches clients et historique d'interventions</li>
+                    <li>Gestion des demandes d'intervention en temps réel</li>
+                    <li>Saisie de comptes-rendus d'intervention sur site</li>
+                    <li>Accès aux stocks et gestion des pièces détachées</li>
+                    <li>Signature électronique des bons d'intervention</li>
+                    <li>Mode hors-ligne avec synchronisation automatique</li>
+                    <li>Géolocalisation et planification d'itinéraires</li>
+                    <li>Scan de codes-barres et QR codes</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>Défis techniques</h3>
+                <ul>
+                    <li>Synchronisation bidirectionnelle des données en mode déconnecté</li>
+                    <li>Optimisation des performances pour les appareils mobiles</li>
+                    <li>Gestion de la sécurité et authentification mobile</li>
+                    <li>Adaptation de l'interface utilisateur pour petits écrans</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>Stack technique</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">Java 21</div>
+                    <div class="tech-item">Spring Boot 3.x</div>
+                    <div class="tech-item">React Native</div>
+                    <div class="tech-item">Redux</div>
+                    <div class="tech-item">SQLite</div>
+                    <div class="tech-item">REST API</div>
+                    <div class="tech-item">JWT Authentication</div>
+                    <div class="tech-item">SQL Server</div>
+                </div>
+            </div>
+        `
+    },
+    notedefrais: {
+        title: 'Application Note de Frais Atheneo',
+        subtitle: 'Gestion intelligente des dépenses professionnelles',
+        content: `
+            <div class="modal-section">
+                <h3>Vue d'ensemble</h3>
+                <p>Solution complète de gestion des notes de frais intégrée nativement à l'ERP Atheneo. L'application simplifie le processus de saisie, validation et remboursement des frais professionnels tout en assurant une conformité totale avec les réglementations fiscales.</p>
+            </div>
+
+            <div class="modal-section">
+                <h3>Fonctionnalités principales</h3>
+                <ul>
+                    <li>Saisie intuitive des dépenses avec catégorisation automatique</li>
+                    <li>Capture photo et OCR des justificatifs</li>
+                    <li>Calcul automatique des indemnités kilométriques</li>
+                    <li>Workflow de validation hiérarchique configurable</li>
+                    <li>Intégration comptable automatique dans l'ERP</li>
+                    <li>Export des déclarations de TVA</li>
+                    <li>Dashboard de suivi des dépenses par collaborateur</li>
+                    <li>Notifications et rappels automatiques</li>
+                    <li>Génération de rapports et statistiques</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>Avantages métier</h3>
+                <ul>
+                    <li>Réduction du temps de traitement des notes de frais de 70%</li>
+                    <li>Diminution des erreurs de saisie grâce à l'OCR</li>
+                    <li>Amélioration de la traçabilité et conformité</li>
+                    <li>Accélération des remboursements pour les collaborateurs</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h3>Stack technique</h3>
+                <div class="tech-grid">
+                    <div class="tech-item">Java 21</div>
+                    <div class="tech-item">Spring Boot 3.x</div>
+                    <div class="tech-item">React 18</div>
+                    <div class="tech-item">TypeScript</div>
+                    <div class="tech-item">Material-UI</div>
+                    <div class="tech-item">SQL Server</div>
+                    <div class="tech-item">Tesseract OCR</div>
+                    <div class="tech-item">REST API</div>
+                </div>
+            </div>
+        `
+    },
     trainmate: {
         title: 'TrainMate',
         subtitle: 'Application PWA de coaching sportif',

@@ -357,7 +357,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initParallax();
     initScrollIndicator();
     initAvailabilityBanner();
-    initTypingEffect();
+    // initTypingEffect(); // Désactivé pour éviter l'effet de frappe
     initProgressNavigation();
     initTiltEffect();
 
